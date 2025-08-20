@@ -138,13 +138,13 @@ Thumbs.db
 # Vercel
 .vercel
 
-# Build output
-dist/
+# Build output (but keep apps builds for Vercel)
+# dist/
 build/
 
-# App-specific build outputs
-apps/*/dist/
-apps/*/build/
+# App-specific build outputs (keep for deployment)
+# apps/*/dist/
+# apps/*/build/
 apps/*/node_modules/
 
 # App-specific files

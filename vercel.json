@@ -1,39 +1,28 @@
 {
-  "functions": {
-    "apps/qr/index.html": {
-      "runtime": "@vercel/static"
-    },
-    "apps/unfollow/index.html": {
-      "runtime": "@vercel/static"
-    },
-    "apps/drinkmaster/index.html": {
-      "runtime": "@vercel/static"
-    }
-  },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/qr/(.*)",
-      "dest": "/apps/qr/$1"
+      "source": "/qr/:path*",
+      "destination": "/apps/qr/:path*"
     },
     {
-      "src": "/unfollow/(.*)",
-      "dest": "/apps/unfollow/$1"
+      "source": "/unfollow/:path*",
+      "destination": "/apps/unfollow/:path*"
     },
     {
-      "src": "/drinkmaster/(.*)",
-      "dest": "/apps/drinkmaster/$1"
+      "source": "/drinkmaster/:path*",
+      "destination": "/apps/drinkmaster/:path*"
     },
     {
-      "src": "/qr/?$",
-      "dest": "/apps/qr/index.html"
+      "source": "/qr",
+      "destination": "/apps/qr/index.html"
     },
     {
-      "src": "/unfollow/?$",
-      "dest": "/apps/unfollow/index.html"
+      "source": "/unfollow",
+      "destination": "/apps/unfollow/index.html"
     },
     {
-      "src": "/drinkmaster/?$",
-      "dest": "/apps/drinkmaster/index.html"
+      "source": "/drinkmaster",
+      "destination": "/apps/drinkmaster/index.html"
     }
   ],
   "headers": [
