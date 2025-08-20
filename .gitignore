@@ -141,3 +141,13 @@ Thumbs.db
 # Build output
 dist/
 build/
+
+# App-specific build outputs
+apps/*/dist/
+apps/*/build/
+apps/*/node_modules/
+
+# App-specific files
+apps/*/.env
+apps/*/.vercel/
+apps/*/.DS_Store

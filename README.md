@@ -42,52 +42,96 @@ Interactive party games and drinking prompts for your next hangout.
    cd florenapps_hub
    ```
 
-2. **Install dependencies**
+2. **Install all dependencies**
    ```bash
-   npm install
+   npm run install:all
    ```
 
-3. **Start development server**
+3. **Start development server (Hub)**
    ```bash
    npm run dev
    ```
 
-4. **Build for production**
+4. **Start individual app development**
+   ```bash
+   npm run dev:qr          # QR Generator
+   npm run dev:unfollow    # Instagram Analyzer  
+   npm run dev:drinkmaster # Party Games
+   ```
+
+5. **Build for production (all)**
    ```bash
    npm run build
    ```
 
-5. **Preview production build**
+6. **Build individual components**
+   ```bash
+   npm run build:hub       # Build only the hub
+   npm run build:apps      # Build only the apps
+   ```
+
+7. **Preview production build**
    ```bash
    npm run preview
    ```
 
-## 📁 Project Structure
+## 📁 Monorepo Structure
 
 ```
 florenapps_hub/
-├── public/              # Static assets
-│   ├── favicon.svg      # Modern SVG favicon
-│   ├── og.png          # Open Graph image
-│   ├── robots.txt      # SEO robots file
-│   └── sitemap.xml     # SEO sitemap
-├── src/
-│   ├── components/     # Modular components
-│   │   ├── header.js   # Header with branding
-│   │   ├── appCard.js  # App cards with interactions
-│   │   └── footer.js   # Footer with privacy info
-│   ├── index.css       # Tailwind styles + custom CSS
-│   └── main.js         # Main app logic
-├── index.html          # Main HTML template
-├── vercel.json         # Deployment config + rewrites
-└── package.json        # Dependencies + scripts
+├── apps/                    # Individual mini apps
+│   ├── qr/                 # QR Code Generator
+│   │   └── frontend/       # Static HTML/CSS/JS
+│   ├── unfollow/           # Instagram Analyzer
+│   │   ├── src/            # Vite + TypeScript app
+│   │   ├── package.json    # App dependencies
+│   │   └── vite.config.js  # Vite configuration
+│   └── drinkmaster/        # Party Games
+│       ├── src/            # Vite + React app
+│       ├── package.json    # App dependencies
+│       └── vite.config.js  # Vite configuration
+├── scripts/
+│   └── build.js            # Monorepo build script
+├── public/                 # Hub static assets
+│   ├── favicon.svg         # Modern SVG favicon
+│   ├── og.png             # Open Graph image
+│   ├── robots.txt         # SEO robots file
+│   └── sitemap.xml        # SEO sitemap
+├── src/                    # Hub source code
+│   ├── components/        # Modular components
+│   │   ├── header.js      # Header with branding
+│   │   ├── appCard.js     # App cards with interactions
+│   │   └── footer.js      # Footer with privacy info
+│   ├── index.css          # Tailwind styles + custom CSS
+│   └── main.js            # Main app logic
+├── index.html             # Hub HTML template
+├── vercel.json            # Deployment config + routing
+└── package.json           # Hub dependencies + scripts
 ```
 
-## 🔄 Adding New Apps
+## 🔄 Adding New Apps to Monorepo
 
-Adding a new mini app takes just 2 steps:
+Adding a new mini app takes 3 simple steps:
 
-1. **Add app data** in `src/main.js`:
+1. **Create app folder** in `apps/`:
+   ```bash
+   mkdir apps/my-new-app
+   cd apps/my-new-app
+   
+   # For static apps: create frontend/index.html
+   # For Vite apps: npm init vite . --template vanilla
+   ```
+
+2. **Add app configuration** in `scripts/build.js`:
+   ```javascript
+   {
+     name: 'my-new-app',
+     type: 'vite', // or 'static'
+     sourceDir: '.' // or 'frontend' for static
+   }
+   ```
+
+3. **Add app data** in `src/main.js`:
    ```javascript
    const newApp = {
      id: 'my-new-app',
@@ -95,7 +139,7 @@ Adding a new mini app takes just 2 steps:
      description: 'What it does...',
      icon: '🎯',
      bgColor: 'bg-gradient-to-br from-green-500 to-emerald-600',
-     route: '/my-app',
+     route: '/my-new-app',
      features: ['Feature 1', 'Feature 2'],
      status: 'Active',
      statusColor: 'bg-green-100 text-green-800',
@@ -103,11 +147,11 @@ Adding a new mini app takes just 2 steps:
    };
    ```
 
-2. **Add rewrite rule** in `vercel.json`:
+4. **Add routing** in `vercel.json`:
    ```json
    {
-     "source": "/my-app/:match*",
-     "destination": "https://my-app.vercel.app/:match*"
+     "src": "/my-new-app/(.*)",
+     "dest": "/apps/my-new-app/$1"
    }
    ```
 

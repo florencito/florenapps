@@ -1,16 +1,39 @@
 {
-  "rewrites": [
+  "functions": {
+    "apps/qr/index.html": {
+      "runtime": "@vercel/static"
+    },
+    "apps/unfollow/index.html": {
+      "runtime": "@vercel/static"
+    },
+    "apps/drinkmaster/index.html": {
+      "runtime": "@vercel/static"
+    }
+  },
+  "routes": [
     {
-      "source": "/qr/:match*",
-      "destination": "https://qr-code-generator-devops.vercel.app/:match*"
+      "src": "/qr/(.*)",
+      "dest": "/apps/qr/$1"
     },
     {
-      "source": "/unfollow/:match*",
-      "destination": "https://who-to-unfollow.vercel.app/:match*"
+      "src": "/unfollow/(.*)",
+      "dest": "/apps/unfollow/$1"
     },
     {
-      "source": "/drinkmaster/:match*",
-      "destination": "https://drinkmaster-seven.vercel.app/:match*"
+      "src": "/drinkmaster/(.*)",
+      "dest": "/apps/drinkmaster/$1"
+    },
+    {
+      "src": "/qr/?$",
+      "dest": "/apps/qr/index.html"
+    },
+    {
+      "src": "/unfollow/?$",
+      "dest": "/apps/unfollow/index.html"
+    },
+    {
+      "src": "/drinkmaster/?$",
+      "dest": "/apps/drinkmaster/index.html"
     }
   ],
   "headers": [
