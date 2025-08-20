@@ -10,25 +10,77 @@ const rootDir = join(__dirname, '..');
 
 console.log('📦 Copying apps to dist...\n');
 
-// Helper function to copy directories
-async function copyDirectory(src, dest) {
+// Files and folders to exclude from copying
+const excludePatterns = [
+  'node_modules',
+  'dist',
+  '.git',
+  '.gitignore',
+  'package.json',
+  'package-lock.json',
+  'vite.config.js',
+  'tsconfig.json',
+  '.env',
+  'src',
+  'backend',
+  'test-db.js',
+  'render.yaml',
+  'Dockerfile',
+  'eslint.config.js',
+  'postcss.config.js',
+  'tailwind.config.js'
+];
+
+// Helper function to copy directories (excluding problematic files)
+async function copyDirectory(src, dest, excludeList = excludePatterns) {
   try {
     await fs.mkdir(dest, { recursive: true });
     const entries = await fs.readdir(src, { withFileTypes: true });
     
     for (const entry of entries) {
+      // Skip excluded files/folders
+      if (excludeList.includes(entry.name)) {
+        continue;
+      }
+      
       const srcPath = join(src, entry.name);
       const destPath = join(dest, entry.name);
       
       if (entry.isDirectory()) {
-        await copyDirectory(srcPath, destPath);
+        await copyDirectory(srcPath, destPath, excludeList);
       } else {
-        await fs.copyFile(srcPath, destPath);
+        try {
+          await fs.copyFile(srcPath, destPath);
+        } catch (fileError) {
+          console.warn(`  Warning: Could not copy file ${entry.name}:`, fileError.message);
+        }
       }
     }
   } catch (error) {
     console.warn(`Warning: Could not copy ${src}:`, error.message);
   }
+}
+
+// Helper to copy only essential files
+async function copyEssentialFiles(src, dest) {
+  const essentialFiles = ['index.html', 'style.css', 'script.js', 'main.js', 'app.js', 'README.md'];
+  
+  await fs.mkdir(dest, { recursive: true });
+  let copied = 0;
+  
+  for (const file of essentialFiles) {
+    try {
+      const srcFile = join(src, file);
+      const destFile = join(dest, file);
+      await fs.copyFile(srcFile, destFile);
+      console.log(`    ✅ Copied ${file}`);
+      copied++;
+    } catch {
+      // File doesn't exist, skip silently
+    }
+  }
+  
+  return copied;
 }
 
 // Copy pre-built or static apps
@@ -40,14 +92,12 @@ const appsConfig = [
   },
   {
     name: 'unfollow', 
-    source: 'apps/unfollow/dist',
-    fallback: 'apps/unfollow',
+    source: 'apps/unfollow',
     dest: 'dist/apps/unfollow'
   },
   {
     name: 'drinkmaster',
-    source: 'apps/drinkmaster/dist', 
-    fallback: 'apps/drinkmaster',
+    source: 'apps/drinkmaster',
     dest: 'dist/apps/drinkmaster'
   }
 ];
