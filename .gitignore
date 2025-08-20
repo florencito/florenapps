@@ -80,7 +80,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist - commented out for Vercel deployment
 
 # Gatsby files
 .cache/
@@ -138,8 +138,8 @@ Thumbs.db
 # Vercel
 .vercel
 
-# Build output (but keep apps builds for Vercel)
-# dist/
+# Build output (include dist for Vercel deployment)
+# dist/ - commented out so Vercel can serve pre-built files
 build/
 
 # App-specific build outputs (keep for deployment)

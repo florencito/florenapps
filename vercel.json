@@ -5,20 +5,20 @@
       "destination": "/apps/qr/:path*"
     },
     {
-      "source": "/unfollow/:path*",
-      "destination": "/apps/unfollow/:path*"
-    },
-    {
-      "source": "/drinkmaster/:path*",
-      "destination": "/apps/drinkmaster/:path*"
-    },
-    {
       "source": "/qr",
       "destination": "/apps/qr/index.html"
     },
     {
+      "source": "/unfollow/:path*",
+      "destination": "/apps/unfollow/:path*"
+    },
+    {
       "source": "/unfollow",
       "destination": "/apps/unfollow/index.html"
+    },
+    {
+      "source": "/drinkmaster/:path*",
+      "destination": "/apps/drinkmaster/:path*"
     },
     {
       "source": "/drinkmaster",
