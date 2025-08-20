@@ -1,28 +1,28 @@
 {
   "rewrites": [
     {
-      "source": "/qr/:path*",
-      "destination": "/apps/qr/:path*"
-    },
-    {
       "source": "/qr",
       "destination": "/apps/qr/index.html"
     },
     {
-      "source": "/unfollow/:path*",
-      "destination": "/apps/unfollow/:path*"
+      "source": "/qr/(.*)",
+      "destination": "/apps/qr/$1"
     },
     {
       "source": "/unfollow",
       "destination": "/apps/unfollow/index.html"
     },
     {
-      "source": "/drinkmaster/:path*",
-      "destination": "/apps/drinkmaster/:path*"
+      "source": "/unfollow/(.*)",
+      "destination": "/apps/unfollow/$1"
     },
     {
       "source": "/drinkmaster",
       "destination": "/apps/drinkmaster/index.html"
+    },
+    {
+      "source": "/drinkmaster/(.*)",
+      "destination": "/apps/drinkmaster/$1"
     }
   ],
   "headers": [
