@@ -11,7 +11,7 @@ const apps = [
     description: 'Create custom QR codes in seconds. Support for URLs, text, WiFi, contacts and more. Download as PNG or SVG.',
     icon: '📱',
     bgColor: 'bg-gradient-to-br from-blue-500 to-indigo-600',
-    route: '/qr',
+    route: 'https://qr.florenapps.online',
     features: [
       'Multiple QR code types (URL, Text, WiFi)',
       'Customizable colors and sizes',
@@ -31,7 +31,7 @@ const apps = [
     description: 'See who you follow that doesn\'t follow back using your Instagram export. Completely private - analysis happens in your browser.',
     icon: '📊',
     bgColor: 'bg-gradient-to-br from-pink-500 to-purple-600',
-    route: '/unfollow',
+    route: 'https://unfollow.florenapps.online',
     features: [
       'Upload Instagram data export',
       '100% client-side processing',
@@ -51,7 +51,7 @@ const apps = [
     description: 'Party prompts and mini games for your next hangout. Interactive drinking games, fun challenges, and social activities.',
     icon: '🍻',
     bgColor: 'bg-gradient-to-br from-orange-500 to-red-600',
-    route: '/drinkmaster',
+    route: 'https://drinkmaster.florenapps.online',
     features: [
       'Interactive party games',
       'Customizable player names',
