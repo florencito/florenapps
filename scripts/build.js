@@ -43,7 +43,7 @@ const apps = [
 for (const app of apps) {
   console.log(`📱 Building ${app.name} app...`);
   const appDir = join(rootDir, 'apps', app.name);
-  const targetDir = join(rootDir, 'dist', 'apps', app.name);
+  const targetDir = join(rootDir, 'dist', app.name);
   
   try {
     // Create target directory
@@ -131,10 +131,10 @@ for (const app of apps) {
 
 console.log('🎉 Monorepo build completed successfully!');
 console.log('\n📁 Build structure:');
-console.log('├── dist/                 (main hub)');
-console.log('├── dist/apps/qr/         (QR generator)');
-console.log('├── dist/apps/unfollow/   (Instagram analyzer)');
-console.log('└── dist/apps/drinkmaster/ (Party games)');
+console.log('├── dist/            (main hub)');
+console.log('├── dist/qr/         (QR generator)');
+console.log('├── dist/unfollow/   (Instagram analyzer)');
+console.log('└── dist/drinkmaster/ (Party games)');
 
 // Helper function to copy directories recursively
 async function copyDirectory(src, dest) {
