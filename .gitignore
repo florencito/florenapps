@@ -138,8 +138,8 @@ Thumbs.db
 # Vercel
 .vercel
 
-# Build output (include dist for Vercel deployment)
-# dist/ - commented out so Vercel can serve pre-built files
+# Build output (exclude dist - let Vercel build it)
+dist/
 build/
 
 # App-specific build outputs (keep for deployment)

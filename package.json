@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/copy-apps.js",
+    "build": "node scripts/build.js",
     "build:hub": "vite build",
     "build:apps": "npm run build:qr && npm run build:unfollow && npm run build:drinkmaster",
     "build:qr": "cd apps/qr && npm run build",
@@ -14,8 +14,6 @@
     "build:drinkmaster": "cd apps/drinkmaster && npm run build",
     "install:all": "npm install && npm run install:apps",
     "install:apps": "cd apps/qr && npm install && cd ../unfollow && npm install && cd ../drinkmaster && npm install",
-    "vercel:install": "npm run install:apps",
-    "vercel:build": "npm run build:hub",
     "copy:apps": "node scripts/copy-apps.js",
     "dev:qr": "cd apps/qr && npm run dev",
     "dev:unfollow": "cd apps/unfollow && npm run dev",
