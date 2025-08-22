@@ -154,7 +154,7 @@ class FlorenAppsHub {
               Got an idea for a mini app? Let me know what boring task you'd like automated.
             </p>
             <a 
-              href="https://github.com/floren/florenapps-hub/issues/new?template=app-request.md" 
+              href="https://github.com/florencito/florenapps/issues/new?template=app-request.md"
               target="_blank"
               rel="noopener noreferrer"
               class="btn-secondary inline-flex items-center focus-ring"

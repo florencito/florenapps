@@ -74,8 +74,8 @@ This repository contains **only the hub** - a landing page and app directory bui
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/florencito/florenapps-hub.git
-   cd florenapps-hub
+   git clone https://github.com/florencito/florenapps.git
+   cd florenapps
    ```
 
 2. **Install dependencies**

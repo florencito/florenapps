@@ -11,7 +11,7 @@ Thanks for your interest in contributing to florenApps! This document provides g
 - New features for the hub itself
 
 ### 🎮 App Suggestions
-- Use our [App Request Template](https://github.com/floren/florenapps-hub/issues/new?template=app-request.md)
+- Use our [App Request Template](https://github.com/florencito/florenapps/issues/new?template=app-request.md)
 - Focus on privacy-friendly, useful tools
 - No accounts required philosophy
 
@@ -35,8 +35,8 @@ Thanks for your interest in contributing to florenApps! This document provides g
 ### Local Setup
 ```bash
 # Clone the repo
-git clone https://github.com/floren/florenapps-hub.git
-cd florenapps-hub
+git clone https://github.com/florencito/florenapps.git
+cd florenapps
 
 # Install dependencies
 npm install

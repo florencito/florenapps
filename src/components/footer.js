@@ -99,7 +99,7 @@ export function createFooter() {
                 
                 <!-- GitHub -->
                 <a 
-                  href="https://github.com/floren" 
+                  href="https://github.com/florencito"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200 text-sm focus-ring rounded px-2 py-1"
