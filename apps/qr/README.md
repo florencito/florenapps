@@ -1,110 +1,100 @@
-# QR Code Generator 📱
+# QR Code Generator App 🧾
 
-A fast, privacy-friendly QR code generator that works entirely in your browser. Create custom QR codes for URLs, text, WiFi credentials, and more.
+A simple fullstack project that allows users to generate QR codes from URLs. Built as a DevOps & Cloud portfolio project, with Docker, Terraform, and modern deployment workflows.
 
-## 🌟 Features
+## Tech Stack
+- Python + Flask (backend)
+- HTML + CSS (frontend)
+- Docker & Docker Compose
+- GitHub Actions (CI/CD)
+- Vercel & Render (deployment)
 
-- **Multiple QR Types**: URLs, plain text, WiFi, contact info, SMS
-- **Customizable Design**: Colors, sizes, and error correction levels
-- **Download Options**: PNG and SVG formats
-- **Batch Generation**: Create multiple QR codes at once
-- **Privacy First**: Everything runs locally in your browser
-- **No Account Required**: Start generating immediately
+## 🚀 Local Development (with Docker Compose)
+To run the project locally using Docker Compose:
 
-## 🚀 Live Demo
+git clone https://github.com/florencito/qr-code-generator-devc.git
 
-**[→ Try it now at florenapps.com/qr](https://florenapps.com/qr)**
+cd qr-code-generator-devc
 
-## 📖 How to Use
+docker-compose up --build
 
-1. **Choose QR Type**: Select URL, text, WiFi, or other format
-2. **Enter Content**: Paste your URL or type your text
-3. **Customize**: Pick colors and size (optional)
-4. **Generate**: Click "Generate QR Code"
-5. **Download**: Save as PNG or SVG
+This will start:
 
-## 🛠️ Tech Stack
+Backend (Flask API) on http://localhost:8000
 
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **QR Library**: qrcode.js
-- **Styling**: Custom CSS with modern design
-- **Deployment**: Vercel (via florenApps monorepo)
+Frontend (HTML + JS) on http://localhost:3000
 
-## 🎨 Supported QR Types
+Then, go to http://localhost:3000, enter a URL and click Generate QR to get your code.
 
-- **📱 URL**: Website links, social media profiles
-- **📝 Text**: Plain text messages, notes
-- **📶 WiFi**: Network credentials for easy sharing
-- **📞 Contact**: vCard format contact information
-- **💬 SMS**: Pre-filled text messages
-- **📧 Email**: Mailto links with subject/body
+## 🐳 Docker-only
+If you want to run the backend alone using Docker:
 
-## 🔧 Development
+cd backend
 
-This app is part of the [florenApps monorepo](https://github.com/floren/florenapps-hub).
+docker build -t qr-backend .
 
-### Local Development
-```bash
-# From the monorepo root
-cd florenapps-hub
-npm run dev:qr
-```
+docker run -p 8000:8000 qr-backend
 
-### Building
-```bash
-# Build QR app specifically
-npm run build:qr
+Then use Postman or curl to test the /generate endpoint.
 
-# Or build entire monorepo
-npm run build
-```
+## 🗂️ Project Structure
+qr-code-generator/
 
-## 🤝 Contributing
+├── backend/  # Flask API to generate QR
 
-Contributions are welcome! Please see the main [Contributing Guide](../../CONTRIBUTING.md) for details.
+├── frontend/  # Static HTML + JS frontend
 
-### QR-Specific Issues
-When reporting issues or suggesting features for the QR generator, please:
-- Use the `app:qr` label
-- Include browser and OS information
-- Provide examples of the QR content that caused issues
+├── docker-compose.yml  # Compose file to run both services
 
-## 📝 Changelog
+├── terraform/  # (WIP) Simulated AWS infra
 
-### v2.1.0 - 2024-08-20
-- ✨ Added batch QR generation
-- 🎨 Improved mobile responsive design
-- 🐛 Fixed SVG download on Safari
+├── render.yaml  # Configuration for Render deployment
 
-### v2.0.0 - 2024-08-15
-- 🏗️ Migrated to florenApps monorepo
-- ✨ Added WiFi QR code support
-- 🎨 Redesigned with modern UI
-- ⚡ Improved generation speed
-
-### v1.2.0 - 2024-07-01
-- ✨ Added custom color options
-- 📱 Added vCard contact support
-- 🐛 Fixed download filename issues
-
-## 🔒 Privacy
-
-- **No data collection**: QR codes are generated locally
-- **No tracking**: No analytics or user monitoring
-- **No uploads**: Your content never leaves your browser
-- **No accounts**: Use instantly without signing up
-
-## 📄 License
-
-This project is part of florenApps and is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
-
-## 🌐 More Apps
-
-Explore other privacy-friendly tools in the florenApps collection:
-- 🏠 [**Hub**](https://florenapps.com) - Browse all apps
-- 📊 [**Who to Unfollow**](https://florenapps.com/unfollow) - Instagram follower analysis
-- 🍻 [**DrinkMaster**](https://florenapps.com/drinkmaster) - Party games and prompts
+└── README.md
 
 ---
 
-Built with ❤️ by [Floren](https://github.com/floren) • Privacy-first • No tracking • Open source friendly
+### 🌍 Live Demo
+Note: First load may take a few seconds as the backend is hosted on a free Render instance that sleeps when inactive.
+
+- 🔗 Frontend: [https://qr-code-generator-devops.vercel.app/](https://qr-code-generator-devops.vercel.app/)
+- 🔗 Backend: [https://qr-backend-83wg.onrender.com/generate](https://qr-backend-83wg.onrender.com/generate)
+
+---
+
+### ☁️ Deployment Details
+
+#### ✅ Backend (Flask on Render)
+- Hosted for free on [Render.com](https://render.com)
+- Deploy method: GitHub → Python environment (no Docker)
+- Live endpoint: `/generate`
+
+#### ✅ Frontend (Static site on Vercel)
+- Hosted on [Vercel](https://vercel.com)
+- Static HTML + JS
+- Fetches data from backend via `fetch()`
+
+---
+
+### 🧠 What I Learned
+
+- Creating and containerizing a Flask API
+- Handling CORS and frontend-backend communication
+- Deploying services with Render and Vercel
+- Docker Compose orchestration
+- Writing clean and maintainable infrastructure
+
+---
+
+### 📸 Screenshots
+
+![Preview](./preview.png)
+
+---
+
+### 👨‍💻 Author
+
+**Florencio Reyes** – DevOps & Cloud Enthusiast  
+[LinkedIn](https://www.linkedin.com/in/florencio-reyes/) | [GitHub](https://github.com/florencito)
+
+---

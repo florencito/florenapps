@@ -9,6 +9,8 @@ const fondos = [
   'bg-gradient-to-br from-amber-500 to-orange-600',
 ]
 
+const MAX_CARTAS = 25
+
 const barajar = (arr) => {
   const copia = [...arr]
   for (let i = copia.length - 1; i > 0; i--) {
@@ -27,7 +29,8 @@ const Juego = ({ jugadores, onFin, mode = 'normal' }) => {
 
   useEffect(() => {
     if (!loading) {
-      setMazo(barajar(cards))
+      const barajado = barajar(cards)
+      setMazo(barajado.slice(0, MAX_CARTAS))
       setIndice(0)
     }
   }, [cards, loading])
@@ -49,10 +52,11 @@ const Juego = ({ jugadores, onFin, mode = 'normal' }) => {
     }
   }
 
+
   // Show loading state
   if (loading) {
     return (
-      <div className="p-4 flex flex-col justify-center items-center text-center min-h-screen">
+      <div className="p-4 flex flex-col justify-center items-center text-center min-h-dvh animate-fade-zoom">
         <div className="bg-gray-500 w-full max-w-md text-white rounded-xl shadow-xl p-6 mb-6">
           <h2 className="text-lg font-medium">Cargando cartas...</h2>
         </div>
@@ -63,7 +67,7 @@ const Juego = ({ jugadores, onFin, mode = 'normal' }) => {
   // Show error state
   if (error) {
     return (
-      <div className="p-4 flex flex-col justify-center items-center text-center min-h-screen">
+      <div className="p-4 flex flex-col justify-center items-center text-center min-h-dvh animate-fade-zoom">
         <div className="bg-red-500 w-full max-w-md text-white rounded-xl shadow-xl p-6 mb-6">
           <h2 className="text-lg font-medium">Error al cargar las cartas</h2>
           <p className="text-sm mt-2">{error.message}</p>
@@ -75,7 +79,7 @@ const Juego = ({ jugadores, onFin, mode = 'normal' }) => {
   // Show empty state
   if (mazo.length === 0) {
     return (
-      <div className="p-4 flex flex-col justify-center items-center text-center min-h-screen">
+      <div className="p-4 flex flex-col justify-center items-center text-center min-h-dvh animate-fade-zoom">
         <div className="bg-yellow-500 w-full max-w-md text-white rounded-xl shadow-xl p-6 mb-6">
           <h2 className="text-lg font-medium">No hay cartas disponibles</h2>
           <p className="text-sm mt-2">Necesitas agregar cartas a la base de datos</p>
@@ -85,26 +89,24 @@ const Juego = ({ jugadores, onFin, mode = 'normal' }) => {
   }
 
   return (
-    <div className="p-4 flex flex-col justify-center items-center text-center min-h-screen relative">
+    <div className="p-4 flex flex-col justify-center items-center text-center min-h-dvh relative animate-fade-zoom">
       <div className="absolute top-2 left-2 text-xs bg-black/40 px-2 py-1 rounded">
         {modeLabel}
       </div>
       <div
-        className={`w-full max-w-md text-white rounded-xl shadow-xl p-6 mb-6 transition-colors duration-300 ${
+        key={indice}
+        className={`w-full max-w-md text-white rounded-xl shadow-xl p-6 mb-6 transition-colors duration-300 animate-fade-in-up ${
           fondos[indice % fondos.length]
         }`}
       >
-        <h2 className="text-lg font-medium">{textoCarta}</h2>
+        <h2 className="text-lg font-medium break-words">{textoCarta}</h2>
       </div>
       <button
-        className="bg-purple-600 hover:bg-purple-700 active:scale-95 text-white px-6 py-2 rounded-full shadow-md transition duration-300"
+        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full shadow-md"
         onClick={siguienteCarta}
       >
         Siguiente
       </button>
-      <div className="mt-4 text-sm text-gray-500">
-        Carta {indice + 1} de {mazo.length}
-      </div>
     </div>
   )
 }
